@@ -1,6 +1,7 @@
 @charset "UTF8";
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /*
 
@@ -16,9 +17,14 @@ align-self
 :root {
 	--default: #1011EB;
 	--light: #5858EE;
+	--light10A: #5858EE10;
+	--light30A: #5858EE30;
+	--light50A: #5858EE50;
+	--light70A: #5858EE70;
 	--font-one: #07076B;
 	--grayblue: #28286B;
 	--darkdefault: #0D0DB8;
+	--background: #EAEAEAFF;
 }
 
 * {
@@ -28,8 +34,17 @@ align-self
 }
 
 body {
-	display: flex;
-	justify-content: center;
+	background-color: var(--light10A);
+}
+
+header {
+	background-color: #202020;
+	padding: 20px;
+	color: var(--background);
+}
+
+header h1 {
+	font: 400 2em 'Poppins', Arial, sans-serif;
 }
 
 main {	
@@ -37,10 +52,13 @@ main {
 	padding: 20px;
 	border-radius: 20px;
 	text-align: center;
-	max-width: 600px;
+	max-width: 550px;
 	font-weight: 300;
 	color: var(--default);
-
+	margin-top: 20px;
+	border: #00000040 solid 1px;
+	box-shadow: 2px 2px 2px #00000020;
+	margin: auto;
 	margin-top: 20px;
 }
 
@@ -70,28 +88,29 @@ fieldset {
 	border: none;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 input{
 	padding: 15px;
-	margin: 10px 10px 10px 0px;
 	border: none;
+	margin: 10px;
 	border-radius: 10px;
-	width: 255px;
+	width: 200px;
 	color: var(--darkdefault);
 }
 
 input.lighter {
-	background-color: #5858EE10;
+	background-color: var(--light10A);
 }
 
 input.light {
-	background-color: #5858EE30;
+	background-color: var(--light30A);
 }
 
 input.normal {
-	background-color: #5858EE50;
-	width: 93%;
+	background-color: var(--light50A);
+	width: 83.5%;
 }
 
 input::placeholder {
@@ -99,7 +118,7 @@ input::placeholder {
 }
 
 div select.dark {
-	background-color: #5858EE70;
+	background-color: var(--light70A);
 	border: none;
 	border-radius: 10px;
 	width: 50%;
@@ -114,13 +133,20 @@ option {
 	background-color: white;
 }
 
+div#buttonDiv {
+	background-color: var(--background);
+    border-radius: 0px 0px 20px 20px;
+    margin: 30px -25px -25px -25px;
+    border: #00000020 solid 1px;
+}
+
 input[type=submit] {
 	border: none;
 	background-color: var(--default);
 	color: white;
-	padding: 20px;
+	padding: 15px 20px;
 	border-radius: 20px;
-	margin: 5px;
+	margin: 15px;
 	width: 150px;
 }
 
@@ -128,4 +154,37 @@ input[type=submit]:hover {
 	cursor: pointer;
 	background-color: var(--light);
 	box-shadow: inset 2px 2px 2px #00000050;
+}
+
+footer {
+	margin-top: 20px;
+	padding: 20px;
+	background-color: var(--light30A);
+	display: flex;
+	justify-content: space-around;
+	font-family: 'Poppins', Arial, sans-serif;
+	color: var(--grayblue);
+}
+
+footer ul {
+	list-style: none;
+	text-indent: 20px;
+}
+
+footer li::before {
+	content: '🔗';
+}
+
+.created {
+	text-indent: 20px;
+}
+
+p#msgtrue {
+	color: green;
+	font-family: 'Poppins', Arial, sans-serif;
+}
+
+p#msgfalse {
+	color: red;
+	font-family: 'Poppins', Arial, sans-serif;
 }

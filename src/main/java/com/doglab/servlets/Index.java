@@ -1,6 +1,11 @@
 package com.doglab.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.doglab.dao.UserDAO;
+import com.doglab.users.User;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +20,22 @@ public class Index extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("http://localhost:8080/FORM-JSP-SERVLET/index.jsp");
+		String password = request.getParameter("iptPassword");
+		String url = "http://localhost:8080/FORM-JSP-SERVLET/index.jsp?msg=created";
+		if(password.length() < 7) {
+			url = "http://localhost:8080/FORM-JSP-SERVLET/index.jsp?msg=password";
+		}else {
+			User user = new User();
+			user.setName(request.getParameter("iptName"));
+			user.setSurname(request.getParameter("iptSurname"));
+			user.setEmail(request.getParameter("iptEmail"));
+			user.setAdress(request.getParameter("iptAdress"));
+			user.setCountry(request.getParameter("slctCountry"));
+			user.setPassword(password);
+			
+			UserDAO.createUserRegistry(user);
+		}
+		response.sendRedirect(url);
 	}
 
 }

@@ -7,9 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cadastro</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<link rel="stylesheet" type="text/css" href="styles/style2.css">
 </head>
 <body>
+	<header>
+		<h1>&#x1F436; DOG LAB</h1>
+	</header>
 	<main>
 		<div>
 			<h1 id="title">Cadastro</h1>
@@ -17,8 +20,21 @@
 		</div>
 		
 		<form method='POST' action="Index">
+			<%
+				if(request.getParameter("msg") != null) {
+					if(request.getParameter("msg").equals("created")) {
+			%>
+						<p id="msgtrue"><strong>Conta criada com sucesso!</strong></p>
+			<%	
+					}else if(request.getParameter("msg").equals("password")){
+			%>
+						<p id="msgfalse"><strong>A senha deve conter pelo menos 7 digitos!</strong></p>
+			<%	
+					}
+				}
+			%>
 			<fieldset>
-				<div >
+				<div>
 					<input type="text" name="iptName" placeholder="Nome" class="lighter" required>
 				</div>
 				<div>
@@ -37,16 +53,33 @@
 					<input type="text" name="iptAdress" placeholder="Endereço" class="normal">
 				</div>
 				<div>
-					<select class="dark">
+					<select class="dark" name="slctCountry">
 						<option selected disabled>País</option>
-						<option>&#x1F1E7; Brasil</option>
-						<option>&#x1F1E9; Canadá</option>
-						<option>&#x1F1E8; Alemanha</option>
+						<option>Brasil</option>
+						<option>Canadá</option>
+						<option>Alemanha</option>
 					</select>
 				</div>
 			</div>
-			<input type="submit" value="&#x2714; Cadastrar">
+			<div id="buttonDiv">
+				<input type="submit" value="&#x2714; Cadastrar">
+			</div>
 		</form>
 	</main>
+	<footer>
+		<div>
+			<h1>Contact us:</h1>
+			<ul>
+				<li><a href="https://github.com/Dogoso" target="_blank">Github</a></li>
+				<li><a href="https://twitter.com/SilasDogoso" target="_blank">Twitter</a></li>
+				<li><a href="https://www.instagram.com/silasdogoso/" target="_blank">Instagram</a></li>
+			</ul>
+		</div>
+		<div>
+			<h1 class=>Created by: </h1>
+			<p class="created">&copy; Dog Lab, inc</p>
+			<p class="created">Silas Juan</p>
+		</div>
+	</footer>
 </body>
 </html>

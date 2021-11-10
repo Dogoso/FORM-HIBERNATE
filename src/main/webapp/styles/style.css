@@ -1,0 +1,131 @@
+@charset "UTF8";
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/*
+
+flex-direction
+flex-wrap
+align-items
+justify-content
+order
+align-self
+
+*/
+
+:root {
+	--default: #1011EB;
+	--light: #5858EE;
+	--font-one: #07076B;
+	--grayblue: #28286B;
+	--darkdefault: #0D0DB8;
+}
+
+* {
+	font-family: 'Quicksand', Arial, sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+}
+
+main {	
+	background-color: white;
+	padding: 20px;
+	border-radius: 20px;
+	text-align: center;
+	max-width: 600px;
+	font-weight: 300;
+	color: var(--default);
+
+	margin-top: 20px;
+}
+
+main > div {
+	text-align: left;
+	padding: 10px;
+}
+
+h1#title {
+	font-weight: 300;
+	padding: 0px;
+	margin: 20px 0px 0px 0px;
+}
+
+p#subtitle {
+	padding: 0px;
+	margin: 0px;
+}
+
+form {
+	margin: 5px;
+}
+
+fieldset {
+	padding: 0px;
+	margin: 5px 0px 0px 0px;
+	border: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+input{
+	padding: 15px;
+	margin: 10px 10px 10px 0px;
+	border: none;
+	border-radius: 10px;
+	width: 255px;
+	color: var(--darkdefault);
+}
+
+input.lighter {
+	background-color: #5858EE10;
+}
+
+input.light {
+	background-color: #5858EE30;
+}
+
+input.normal {
+	background-color: #5858EE50;
+	width: 93%;
+}
+
+input::placeholder {
+	color: var(--darkdefault);
+}
+
+div select.dark {
+	background-color: #5858EE70;
+	border: none;
+	border-radius: 10px;
+	width: 50%;
+	padding: 15px;
+	color: var(--darkdefault);
+	margin: 10px 0px;
+	text-align: left;
+}
+
+option {
+	border-radius: 5px;
+	background-color: white;
+}
+
+input[type=submit] {
+	border: none;
+	background-color: var(--default);
+	color: white;
+	padding: 20px;
+	border-radius: 20px;
+	margin: 5px;
+	width: 150px;
+}
+
+input[type=submit]:hover {
+	cursor: pointer;
+	background-color: var(--light);
+	box-shadow: inset 2px 2px 2px #00000050;
+}

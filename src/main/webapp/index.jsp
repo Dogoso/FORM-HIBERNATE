@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cadastro</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style2.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 	<header>
@@ -33,6 +33,12 @@
 					}
 				}
 			%>
+			
+			<!-- 
+			EL (Expression Language) 
+			<p>${param.id}</p>
+			-->
+			
 			<fieldset>
 				<div>
 					<input type="text" name="iptName" placeholder="Nome" class="lighter" required>

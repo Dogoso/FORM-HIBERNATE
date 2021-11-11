@@ -7,19 +7,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cadastro</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<link rel="stylesheet" type="text/css" href="styles/style2.css">
 </head>
 <body>
 	<header>
-		<h1>&#x1F436; DOG LAB</h1>
+		<h1>&#x1F436; <a href="http://localhost:8080/FORM-JSP-SERVLET/login.jsp">DOG LAB</a></h1>
+		<p id="login"><a href="http://localhost:8080/FORM-JSP-SERVLET/login.jsp">&#x1F64E; Iniciar sessão</a></p>
 	</header>
 	<main>
-		<div>
-			<h1 id="title">Cadastro</h1>
-			<p id="subtitle">Preencha as informações abaixo</p>
-		</div>
-		
 		<form method='POST' action="Index">
+			<div>
+				<h1 id="title">Cadastro</h1>
+				<p id="subtitle">Preencha as informações abaixo</p>
+			</div>
 			<%
 				if(request.getParameter("msg") != null) {
 					if(request.getParameter("msg").equals("created")) {
@@ -87,5 +87,14 @@
 			<p class="created">Silas Juan</p>
 		</div>
 	</footer>
+	
+	<%
+		if(request.getMethod().equals("GET")) {
+			if(request.getSession().getAttribute("user") != null) {
+				response.sendRedirect("http://localhost:8080/FORM-JSP-SERVLET/users.jsp");
+			}
+		}
+	%>
+	
 </body>
 </html>

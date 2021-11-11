@@ -1,3 +1,0 @@
-- Email cookie appear
-- Dont create equals accounts
-- All Users.

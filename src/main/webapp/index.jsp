@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cadastro</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style2.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 	<header>
@@ -30,6 +30,10 @@
 			%>
 						<p id="msgfalse"><strong>A senha deve conter pelo menos 7 digitos!</strong></p>
 			<%	
+					}else if(request.getParameter("msg").equals("email")) {
+			%>
+						<p id="msgfalse"><strong>Email já cadastrado!</strong></p>
+			<%
 					}
 				}
 			%>

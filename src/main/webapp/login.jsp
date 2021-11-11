@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style2.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	<link rel="stylesheet" type="text/css" href="styles/login.css">
 </head>
 <body>
@@ -36,7 +36,16 @@
 				%>
 			</div>
 			<div>
-				<input type="email" placeholder="Email" name="iptEmail" class="lighter" value="" required>
+				<input type="email" placeholder="Email" name="iptEmail" class="lighter" value="<%
+					Cookie[] cookies = request.getCookies();
+					if(cookies != null) {
+						for(Cookie c : cookies) {
+							if(c.getName().equals("email")) {
+								out.print(c.getValue());
+							}
+						}
+					}
+				%>" required>
 			</div>
 			<div>
 				<input type="password" placeholder="senha" name="iptPassword" class="light" required>
@@ -70,7 +79,11 @@
 	
 	<%
 		if(request.getMethod().equals("GET")) {
-			if(request.getSession().getAttribute("user") != null) {
+			if(request.getParameter("invalidate") != null) {
+				if(request.getParameter("invalidate").equals("true")) {
+					session.invalidate();
+				}
+			}else if(session.getAttribute("user") != null) {
 				response.sendRedirect("http://localhost:8080/FORM-JSP-SERVLET/users.jsp");
 			}
 		}

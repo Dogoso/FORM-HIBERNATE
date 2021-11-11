@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
 		User user = new User();
 		user.setEmail(req.getParameter("iptEmail"));
 		user.setPassword(req.getParameter("iptPassword"));
-		List<User> users = UserDAO.readUsersRegistry();
+		List<User> users = UserDAO.readUsers();
 		for(User u : users) {
 			if(u.getEmail().equals(user.getEmail())) {
 				if(u.getPassword().equals(user.getPassword())) { // Login Realizado

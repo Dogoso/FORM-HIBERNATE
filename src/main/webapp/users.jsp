@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.doglab.dao.UserDAO" %>
+<%@ page import="com.doglab.users.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +10,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>All Users</title>
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="styles/style2.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<link rel="stylesheet" type="text/css" href="styles/users.css">
 </head>
 <body>
 	<header>
 		<h1>&#x1F436; <a href="http://localhost:8080/FORM-JSP-SERVLET/users.jsp">DOG LAB</a></h1>
-		<p id="login">&#x1F64E; <%=request.getSession().getAttribute("user") %></p>
+		<div class="dropdown">
+			<p id="login">&#x1F64E; <%=request.getSession().getAttribute("user") %></p>
+			<div class="dropdown-menu">
+				<p onclick="invalidateSession()">Deslogar</p>
+			</div>
+		</div>
 	</header>
 	
-	<main>
-	
+	<main id="usersCadastro">
+		<div id="header">
+			<h1>Cadastros: </h1>
+			<p>Abaixo, todos os usuários cadastrados no servidor: </p>
+		</div>
+		<div id="users">
+			<%
+				List<User> users = UserDAO.readUsers();
+				for(User u : users) {
+			%>
+					<div class="user">
+						<h1><%=u.getName()+" "+u.getSurname() %></h1>
+						<p><%=u.getEmail() %></p>
+						<p><%=u.getAdress()+", "+u.getCountry() %></p>
+					</div>
+			<%
+				}
+			%>
+		</div>
 	</main>
 	
 	<footer>
@@ -42,5 +68,6 @@
 			}
 		}
 	%>
+	<script type="text/javascript" src="JS/users.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ import com.doglab.users.User;
 
 public class UserDAO {
 
-	public static void createUserRegistry(User user) {
+	public static void createUser(User user) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		
@@ -44,7 +44,7 @@ public class UserDAO {
 		
 	}
 
-	public static List<User> readUsersRegistry() {
+	public static List<User> readUsers() {
 		Connection conn = null;
 		Statement stm = null;
 		List<User> users = new ArrayList<User>();
@@ -75,6 +75,39 @@ public class UserDAO {
 			}
 		}
 		return users;
+	}
+	
+	public static User readUniqueUser(User user) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		User newUser = null;
+		try {
+			conn = ConnectionFactory.getConnection();
+			String query = "SELECT * FROM users WHERE email = ?";
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, user.getEmail());
+			ResultSet rset = pstm.executeQuery();
+			while(rset.next()) {
+				newUser = new User();
+				newUser.setId(rset.getInt("id"));
+				newUser.setName(rset.getString("name"));
+				newUser.setSurname(rset.getString("surname"));
+				newUser.setEmail(rset.getString("email"));
+				newUser.setPassword(rset.getString("password"));
+				newUser.setAdress(rset.getString("adress"));
+				newUser.setCountry(rset.getString("country"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+				pstm.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return newUser;
 	}
 	
 }

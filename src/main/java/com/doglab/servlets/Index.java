@@ -2,6 +2,7 @@ package com.doglab.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import com.doglab.dao.UserDAO;
 import com.doglab.users.User;
@@ -33,7 +34,13 @@ public class Index extends HttpServlet {
 			user.setCountry(request.getParameter("slctCountry"));
 			user.setPassword(password);
 			
-			UserDAO.createUserRegistry(user);
+			User u = UserDAO.readUniqueUser(user);
+			if(u != null) {
+				url = "http://localhost:8080/FORM-JSP-SERVLET/index.jsp?msg=email";
+			}else {
+				UserDAO.createUser(user);
+			}
+
 		}
 		response.sendRedirect(url);
 	}

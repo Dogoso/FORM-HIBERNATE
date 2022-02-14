@@ -1,11 +1,12 @@
-package com.doglab.servlets;
+package com.doglab.form.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
-import com.doglab.dao.UserDAO;
-import com.doglab.users.User;
+import javax.persistence.EntityManager;
+
+import com.doglab.form.JPAUtil.JPAUtil;
+import com.doglab.form.dao.UserDAO;
+import com.doglab.form.users.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/Index")
 public class Index extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -34,13 +37,21 @@ public class Index extends HttpServlet {
 			user.setCountry(request.getParameter("slctCountry"));
 			user.setPassword(password);
 			
-			User u = UserDAO.readUniqueUser(user);
+			EntityManager em = JPAUtil.getEntityManager();
+			UserDAO userDao = new UserDAO(em);
+			
+			em.getTransaction().begin();
+
+			User u = userDao.readUniqueUser(user);
+			
 			if(u != null) {
 				url = "http://localhost:8080/FORM-JSP-SERVLET/index.jsp?msg=email";
 			}else {
-				UserDAO.createUser(user);
+				userDao.createUser(user);
 			}
-
+			
+			em.getTransaction().commit();
+			em.close();
 		}
 		response.sendRedirect(url);
 	}

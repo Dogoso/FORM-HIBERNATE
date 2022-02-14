@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="com.doglab.dao.UserDAO" %>
-<%@ page import="com.doglab.users.User" %>
+<%@ page import="com.doglab.form.dao.UserDAO" %>
+<%@ page import="com.doglab.form.users.User" %>
+<%@ page import="com.doglab.form.JPAUtil.JPAUtil" %>
+<%@ page import="javax.persistence.EntityManager" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,12 @@
 		</div>
 		<div id="users">
 			<%
-				List<User> users = UserDAO.readUsers();
+				EntityManager em = JPAUtil.getEntityManager();
+				UserDAO userDao = new UserDAO(em);
+				em.getTransaction().begin();
+				List<User> users = userDao.readUsers();
+				em.getTransaction().commit();
+				em.close();
 				for(User u : users) {
 			%>
 					<div class="user">
